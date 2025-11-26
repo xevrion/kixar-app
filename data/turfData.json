@@ -12,6 +12,15 @@
     "longitude": 77.5946
   },
   "about": "Elite Sports Arena is a premium sports facility offering world-class turf grounds. Perfect for football, cricket, and other outdoor sports. Our well-maintained grounds ensure the best playing experience.",
+  "policies": {
+    "cancellation": "Bookings can be cancelled up to 3 hours before slot time. No refunds after that.",
+    "rules": [
+      "Non-marking shoes required.",
+      "No food or drinks allowed on turf.",
+      "Arrive 10 minutes before your slot.",
+      "Management is not responsible for personal belongings."
+    ]
+  },
   "timing": {
     "weekdays": "6:00 AM - 11:00 PM",
     "weekends": "6:00 AM - 12:00 AM"
@@ -26,12 +35,7 @@
     "Lighting",
     "Seating Area"
   ],
-  "sports": [
-    "Football",
-    "Cricket",
-    "Badminton",
-    "Basketball"
-  ],
+  "sports": ["Football", "Cricket", "Badminton", "Basketball"],
   "offers": [
     {
       "id": "offer-1",

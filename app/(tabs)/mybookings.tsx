@@ -42,7 +42,7 @@ export default function MyBookingsScreen() {
 
       <View className="flex-row justify-between items-center mt-4 pt-4 border-t border-slate-100">
         <View className="bg-green-50 px-3 py-1.5 rounded-lg">
-          <Text className="text-[15px] font-semibold text-[#2DB0A3]">₹{item.pricePerHour}/hour</Text>
+          <Text className="text-[15px] font-semibold text-brand">₹{item.pricePerHour}/hour</Text>
         </View>
         <View className="bg-blue-100 px-3 py-1.5 rounded-lg">
           <Text className="text-xs font-semibold text-blue-800">Confirmed</Text>

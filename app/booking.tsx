@@ -71,14 +71,14 @@ export default function BookingPageScreen() {
             </TouchableOpacity>
           </View>
 
-          <Text className="text-sm text-[#2DB0A3] mb-3 font-medium">November 2025</Text>
+          <Text className="text-sm text-brand mb-3 font-medium">November 2025</Text>
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false} className="-mx-5 px-5">
             {dates.map((item, index) => (
               <TouchableOpacity
                 key={index}
                 className={`items-center py-3 px-4 mr-3 rounded-xl min-w-[60px] ${
-                  selectedDate === item.date ? 'bg-[#2DB0A3]' : 'bg-slate-50'
+                  selectedDate === item.date ? 'bg-brand' : 'bg-slate-50'
                 }`}
                 onPress={() => setSelectedDate(item.date)}
               >
@@ -166,7 +166,7 @@ export default function BookingPageScreen() {
                   <View
                     className={`w-8 h-8 rounded-full border-2 justify-center items-center ${
                       selectedSlot === time
-                        ? 'bg-[#2DB0A3] border-[#2DB0A3]'
+                        ? 'bg-brand border-brand'
                         : 'bg-white border-slate-300'
                     }`}
                   >
@@ -177,7 +177,7 @@ export default function BookingPageScreen() {
                   {index < timeSlots.length - 1 && (
                     <View
                       className={`absolute left-8 w-[60px] h-0.5 ${
-                        selectedSlot === time ? 'bg-[#2DB0A3]' : 'bg-slate-300'
+                        selectedSlot === time ? 'bg-brand' : 'bg-slate-300'
                       }`}
                       style={{ top: 44 }}
                     />
@@ -195,23 +195,23 @@ export default function BookingPageScreen() {
             <TouchableOpacity
               className={`flex-1 flex-row items-center gap-3 py-4 px-4 rounded-xl border-[1px] ${
                 selectedCourt === 'Court A'
-                  ? 'border-[#2DB0A3] bg-green-50'
+                  ? 'border-brand bg-green-50'
                   : 'border-slate-300 bg-white'
               }`}
               onPress={() => setSelectedCourt('Court A')}
             >
               <View
                 className={`w-5 h-5 rounded-full border-2 justify-center items-center ${
-                  selectedCourt === 'Court A' ? 'border-[#2DB0A3]' : 'border-slate-300'
+                  selectedCourt === 'Court A' ? 'border-brand' : 'border-slate-300'
                 }`}
               >
                 {selectedCourt === 'Court A' && (
-                  <View className="w-2.5 h-2.5 rounded-full bg-[#2DB0A3]" />
+                  <View className="w-2.5 h-2.5 rounded-full bg-brand" />
                 )}
               </View>
               <Text
                 className={`text-sm font-medium ${
-                  selectedCourt === 'Court A' ? 'text-[#2DB0A3] font-semibold' : 'text-slate-600'
+                  selectedCourt === 'Court A' ? 'text-brand font-semibold' : 'text-slate-600'
                 }`}
               >
                 Court A
@@ -221,23 +221,23 @@ export default function BookingPageScreen() {
             <TouchableOpacity
               className={`flex-1 flex-row items-center gap-3 py-4 px-4 rounded-xl border-[1px] ${
                 selectedCourt === 'Court B'
-                  ? 'border-[#2DB0A3] bg-green-50'
+                  ? 'border-brand bg-green-50'
                   : 'border-slate-300 bg-white'
               }`}
               onPress={() => setSelectedCourt('Court B')}
             >
               <View
                 className={`w-5 h-5 rounded-full border-2 justify-center items-center ${
-                  selectedCourt === 'Court B' ? 'border-[#2DB0A3]' : 'border-slate-300'
+                  selectedCourt === 'Court B' ? 'border-brand' : 'border-slate-300'
                 }`}
               >
                 {selectedCourt === 'Court B' && (
-                  <View className="w-2.5 h-2.5 rounded-full bg-[#2DB0A3]" />
+                  <View className="w-2.5 h-2.5 rounded-full bg-brand" />
                 )}
               </View>
               <Text
                 className={`text-sm font-medium ${
-                  selectedCourt === 'Court B' ? 'text-[#2DB0A3] font-semibold' : 'text-slate-600'
+                  selectedCourt === 'Court B' ? 'text-brand font-semibold' : 'text-slate-600'
                 }`}
               >
                 Court B
@@ -275,7 +275,7 @@ export default function BookingPageScreen() {
             <Text className="text-sm text-slate-600">| ₹{Math.round(currentBooking.pricePerHour / playerCount)} per player</Text>
           </View>
           <TouchableOpacity>
-            <Text className="text-[13px] text-[#2DB0A3] mt-2 font-medium">View Price Breakdown</Text>
+            <Text className="text-[13px] text-brand mt-2 font-medium">View Price Breakdown</Text>
           </TouchableOpacity>
         </View>
 
@@ -286,7 +286,7 @@ export default function BookingPageScreen() {
       <View className="px-5 py-4 bg-white border-t border-slate-300">
         <TouchableOpacity
           className={`flex-row items-center justify-center py-4 rounded-lg gap-2 ${
-            isFormValid ? 'bg-[#2DB0A3]' : 'bg-slate-400'
+            isFormValid ? 'bg-brand' : 'bg-slate-400'
           }`}
           onPress={handleNext}
           disabled={!isFormValid}
