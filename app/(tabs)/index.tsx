@@ -6,17 +6,20 @@ import React, { useState } from "react";
 import {
   Dimensions,
   Image,
+  Linking,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+
 import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
+import { WebView } from "react-native-webview";
 
 const { width } = Dimensions.get("window");
 
@@ -26,6 +29,7 @@ export default function TurfDetailsScreen() {
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
   const progress = useSharedValue(0);
   const [expanded, setExpanded] = useState(false);
+  const [disableScroll, setDisableScroll] = useState(false);
 
   const handleBookNow = () => {
     updateCurrentBooking({
@@ -69,9 +73,55 @@ export default function TurfDetailsScreen() {
     "Seating Area": { icon: "people-outline", color: "#4B5563" },
   };
 
+  const lat = turfData.location.latitude;
+  const lon = turfData.location.longitude;
+
+  const leafletHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<style>
+  html, body, #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 16px;
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map', {
+    zoomControl: false
+  }).setView([${lat}, ${lon}], 17);
+
+  L.tileLayer(
+    'https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+    { maxZoom: 20 }
+  ).addTo(map);
+
+  L.marker([${lat}, ${lon}]).addTo(map);
+</script>
+</body>
+</html>
+`;
+
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.01},${lat - 0.01},${lon + 0.01},${lat + 0.01}&layer=mapnik&marker=${lat},${lon}`;
+
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+      <ScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        scrollEnabled={!disableScroll}
+      >
         {/* Banner Image with Carousel Dots */}
         <View className="relative" style={{ width, height: 250 }}>
           {/* <Image
@@ -193,7 +243,18 @@ export default function TurfDetailsScreen() {
           </View>
 
           <View className="flex-row gap-3">
-            <TouchableOpacity className="flex-1 flex-row items-center justify-center py-3 rounded-full border border-slate-200">
+            {/* <TouchableOpacity className="flex-1 flex-row items-center justify-center py-3 rounded-full border border-slate-200">
+              <Text className="text-sm font-medium text-black mr-1">
+                Get Direction
+              </Text>
+              <Ionicons name="chevron-forward" size={16} color="#000" />
+            </TouchableOpacity> */}
+            <TouchableOpacity
+              className="flex-1 flex-row items-center justify-center py-3 rounded-full border border-slate-200"
+              onPress={() =>
+                Linking.openURL(`https://maps.google.com/?q=${lat},${lon}`)
+              }
+            >
               <Text className="text-sm font-medium text-black mr-1">
                 Get Direction
               </Text>
@@ -434,9 +495,7 @@ export default function TurfDetailsScreen() {
           <View className="flex-col p-4 bg-[#F4FBFA] rounded-xl border border-[#CAEBE8] gap-3">
             <View className="flex-row items-center gap-1.5">
               <Ionicons name="pricetag" size={20} color="#2DB0A3" />
-              <Text className="text-base font-extrabold">
-                FIRSTBOOK
-              </Text>
+              <Text className="text-base font-extrabold">FIRSTBOOK</Text>
             </View>
             <Text className="flex-1 text-[15px] text-black leading-[18px]">
               Get a 20% Offer on your first turf booking with Kixar App
@@ -501,7 +560,7 @@ export default function TurfDetailsScreen() {
         </View>
 
         {/* Map View */}
-        <View className="px-5 mb-6">
+        {/* <View className="px-5 mb-6">
           <Text className="text-base font-semibold text-black mb-3">
             Map View
           </Text>
@@ -514,16 +573,89 @@ export default function TurfDetailsScreen() {
             </Text>
             <Ionicons name="chevron-forward" size={16} color="#FFF" />
           </TouchableOpacity>
+        </View> */}
+
+        {/* <View className="px-5 mb-6">
+          <Text className="text-base font-semibold text-black mb-3">
+            Map View
+          </Text>
+
+          <View className="h-[200px] overflow-hidden rounded-xl mb-3 bg-white">
+            <WebView
+              originWhitelist={["*"]}
+              source={{ html: leafletHtml }}
+              style={{ flex: 1 }}
+              onTouchStart={() => setDisableScroll(true)}
+              onTouchEnd={() => setDisableScroll(false)}
+              onTouchCancel={() => setDisableScroll(false)}
+            />
+          </View>
+
+          <TouchableOpacity
+            className="flex-row items-center justify-center bg-black py-3.5 rounded-lg gap-1.5"
+            onPress={() =>
+              Linking.openURL(`https://maps.google.com/?q=${lat},${lon}`)
+            }
+          >
+            <Text className="text-sm font-semibold text-white">
+              Get Direction
+            </Text>
+            <Ionicons name="chevron-forward" size={16} color="#FFF" />
+          </TouchableOpacity>
+        </View> */}
+        <View className="px-0 mb">
+          {/* Title */}
+          <Text className="text-base font-semibold text-black mb-3 px-5">
+            Map View
+          </Text>
+
+          {/* Map wrapper */}
+          <View className="relative h-[240px] w-full">
+            <WebView
+              originWhitelist={["*"]}
+              source={{ html: leafletHtml }}
+              style={{ flex: 1 }}
+              onTouchStart={() => setDisableScroll(true)}
+              onTouchEnd={() => setDisableScroll(false)}
+              onTouchCancel={() => setDisableScroll(false)}
+            />
+
+            {/* TOP GRADIENT FADE */}
+            <View
+              className="absolute top-0 left-0 right-0 h-12"
+              style={{
+                backgroundColor: "transparent",
+                backgroundImage:
+                  "linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0))",
+              }}
+            />
+
+            {/* GET DIRECTION BUTTON FLOATING ON MAP */}
+            <TouchableOpacity
+              className="absolute bottom-4 left-5 right-5 bg-black py-3.5 rounded-full flex-row items-center justify-center gap-1.5 shadow-lg"
+              onPress={() =>
+                Linking.openURL(`https://maps.google.com/?q=${lat},${lon}`)
+              }
+            >
+              <Text className="text-sm font-semibold text-white">
+                Get Direction
+              </Text>
+              <Ionicons name="chevron-forward" size={16} color="#FFF" />
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <View className="h-[100px]" />
+        {/* <View className="h-[100px]" /> */}
       </ScrollView>
 
       {/* Sticky Bottom Bar */}
       <View className="bg-white border-t border-slate-200 shadow-2xl">
-        <View className="bg-[#D5EFED] py-2 items-center">
-          <Text className="text-xs font-semibold text-brand">
-            15% OFF ends in 01:50 s
+        <View className="bg-[#D5EFED] py-2 items-center flex-row justify-center gap-1">
+          <Text className="text-xs font-black text-brand">
+            15% OFF
+          </Text>
+          <Text className="text-xs font-thin text-brand">
+             ends in 01:50 s
           </Text>
         </View>
         <View className="flex-row justify-between items-center px-5 py-3">
