@@ -192,10 +192,6 @@ npx expo build:ios
 
 This project is created for the KIXAR internship assignment.
 
-## Contact
-
-For any questions or clarifications, please reach out through the assignment submission form.
-
 ---
 
 **Built with ❤️ using React Native, Expo, and NativeWind**
