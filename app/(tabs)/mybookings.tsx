@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
@@ -13,62 +12,62 @@ export default function MyBookingsScreen() {
   const { bookings, deleteBooking } = useBooking();
 
   const renderBookingItem = ({ item }: any) => (
-    <View style={styles.bookingCard}>
-      <View style={styles.cardHeader}>
-        <Text style={styles.turfName}>{item.turfName}</Text>
+    <View className="bg-white rounded-2xl p-5 mb-4 shadow-sm">
+      <View className="flex-row justify-between items-center mb-4 pb-3 border-b border-slate-100">
+        <Text className="text-lg font-semibold text-black flex-1">{item.turfName}</Text>
         <TouchableOpacity onPress={() => deleteBooking(item.id)}>
           <Ionicons name="trash-outline" size={20} color="#EF4444" />
         </TouchableOpacity>
       </View>
 
-      <View style={styles.detailRow}>
+      <View className="flex-row items-center gap-2.5 mb-2.5">
         <Ionicons name="calendar-outline" size={16} color="#64748B" />
-        <Text style={styles.detailText}>Date: {item.date} Nov 2025</Text>
+        <Text className="text-sm text-slate-600">Date: {item.date} Nov 2025</Text>
       </View>
 
-      <View style={styles.detailRow}>
+      <View className="flex-row items-center gap-2.5 mb-2.5">
         <Ionicons name="time-outline" size={16} color="#64748B" />
-        <Text style={styles.detailText}>Time: {item.timeSlot}</Text>
+        <Text className="text-sm text-slate-600">Time: {item.timeSlot}</Text>
       </View>
 
-      <View style={styles.detailRow}>
+      <View className="flex-row items-center gap-2.5 mb-2.5">
         <Ionicons name="basketball-outline" size={16} color="#64748B" />
-        <Text style={styles.detailText}>Court: {item.court}</Text>
+        <Text className="text-sm text-slate-600">Court: {item.court}</Text>
       </View>
 
-      <View style={styles.detailRow}>
+      <View className="flex-row items-center gap-2.5 mb-2.5">
         <Ionicons name="people-outline" size={16} color="#64748B" />
-        <Text style={styles.detailText}>Players: {item.playerCount}</Text>
+        <Text className="text-sm text-slate-600">Players: {item.playerCount}</Text>
       </View>
 
-      <View style={styles.cardFooter}>
-        <View style={styles.priceTag}>
-          <Text style={styles.priceText}>₹{item.pricePerHour}/hour</Text>
+      <View className="flex-row justify-between items-center mt-4 pt-4 border-t border-slate-100">
+        <View className="bg-green-50 px-3 py-1.5 rounded-lg">
+          <Text className="text-[15px] font-semibold text-green-500">₹{item.pricePerHour}/hour</Text>
         </View>
-        <View style={styles.statusBadge}>
-          <Text style={styles.statusText}>Confirmed</Text>
+        <View className="bg-blue-100 px-3 py-1.5 rounded-lg">
+          <Text className="text-xs font-semibold text-blue-800">Confirmed</Text>
         </View>
       </View>
     </View>
   );
 
   const renderEmptyState = () => (
-    <View style={styles.emptyContainer}>
-      <View style={styles.emptyIcon}>
+    <View className="flex-1 justify-center items-center p-10">
+      <View className="mb-6">
         <Ionicons name="calendar-outline" size={64} color="#CBD5E1" />
       </View>
-      <Text style={styles.emptyText}>No bookings yet</Text>
-      <Text style={styles.emptySubtext}>
+      <Text className="text-[22px] font-semibold text-slate-600 mb-2">No bookings yet</Text>
+      <Text className="text-sm text-slate-400 text-center leading-5">
         Your bookings will appear here once you make a reservation
       </Text>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>My Bookings</Text>
-        <Text style={styles.headerSubtitle}>
+    <View className="flex-1 bg-slate-50">
+      <View className="bg-white px-5 py-5 pt-[60px] border-b border-slate-300">
+        <Text className="text-[28px] font-bold text-black mb-1">My Bookings</Text>
+        <Text className="text-sm text-slate-600">
           {bookings.length} {bookings.length === 1 ? 'booking' : 'bookings'}
         </Text>
       </View>
@@ -80,126 +79,10 @@ export default function MyBookingsScreen() {
           data={bookings}
           renderItem={renderBookingItem}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.listContainer}
+          contentContainerStyle={{ padding: 16 }}
           showsVerticalScrollIndicator={false}
         />
       )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F8FAFC',
-  },
-  header: {
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    paddingTop: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
-  },
-  headerTitle: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#000',
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 14,
-    color: '#64748B',
-  },
-  listContainer: {
-    padding: 16,
-  },
-  bookingCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F1F5F9',
-  },
-  turfName: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#000',
-    flex: 1,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: 10,
-  },
-  detailText: {
-    fontSize: 14,
-    color: '#475569',
-  },
-  cardFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 16,
-    paddingTop: 16,
-    borderTopWidth: 1,
-    borderTopColor: '#F1F5F9',
-  },
-  priceTag: {
-    backgroundColor: '#F0FDF4',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  priceText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#22C55E',
-  },
-  statusBadge: {
-    backgroundColor: '#DBEAFE',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  statusText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#1D4ED8',
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 40,
-  },
-  emptyIcon: {
-    marginBottom: 24,
-  },
-  emptyText: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#475569',
-    marginBottom: 8,
-  },
-  emptySubtext: {
-    fontSize: 14,
-    color: '#94A3B8',
-    textAlign: 'center',
-    lineHeight: 20,
-  },
-});

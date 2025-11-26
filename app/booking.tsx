@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
   TouchableOpacity,
   Dimensions,
@@ -62,42 +61,39 @@ export default function BookingPageScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+    <View className="flex-1 bg-white">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Date Selector */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Select Date</Text>
+        <View className="px-5 mt-6">
+          <View className="flex-row justify-between items-center mb-3">
+            <Text className="text-base font-semibold text-black">Select Date</Text>
             <TouchableOpacity>
               <Ionicons name="calendar-outline" size={20} color="#000" />
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.monthText}>November 2025</Text>
+          <Text className="text-sm text-green-500 mb-3 font-medium">November 2025</Text>
 
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.datesScroll}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} className="-mx-5 px-5">
             {dates.map((item, index) => (
               <TouchableOpacity
                 key={index}
-                style={[
-                  styles.dateChip,
-                  selectedDate === item.date && styles.dateChipActive,
-                ]}
+                className={`items-center py-3 px-4 mr-3 rounded-xl min-w-[60px] ${
+                  selectedDate === item.date ? 'bg-green-500' : 'bg-slate-50'
+                }`}
                 onPress={() => setSelectedDate(item.date)}
               >
                 <Text
-                  style={[
-                    styles.dayText,
-                    selectedDate === item.date && styles.dayTextActive,
-                  ]}
+                  className={`text-[11px] mb-1 font-medium ${
+                    selectedDate === item.date ? 'text-white' : 'text-slate-600'
+                  }`}
                 >
                   {item.day}
                 </Text>
                 <Text
-                  style={[
-                    styles.dateText,
-                    selectedDate === item.date && styles.dateTextActive,
-                  ]}
+                  className={`text-base font-semibold ${
+                    selectedDate === item.date ? 'text-white' : 'text-black'
+                  }`}
                 >
                   {item.date}
                 </Text>
@@ -107,20 +103,20 @@ export default function BookingPageScreen() {
         </View>
 
         {/* Time Period */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Select Time</Text>
-            <Text style={styles.slotsAvailable}>8 slots available for today.</Text>
+        <View className="px-5 mt-6">
+          <View className="flex-row justify-between items-center mb-3">
+            <Text className="text-base font-semibold text-black">Select Time</Text>
+            <Text className="text-xs text-slate-600">8 slots available for today.</Text>
           </View>
 
-          <View style={styles.periodsGrid}>
+          <View className="flex-row flex-wrap gap-3">
             {periods.map((period) => (
               <TouchableOpacity
                 key={period.id}
-                style={[
-                  styles.periodChip,
-                  selectedPeriod === period.id && styles.periodChipActive,
-                ]}
+                className={`flex-row items-center gap-2 py-3 px-4 rounded-xl ${
+                  selectedPeriod === period.id ? 'bg-black' : 'bg-slate-50'
+                }`}
+                style={{ minWidth: width / 2 - 26 }}
                 onPress={() => setSelectedPeriod(period.id)}
               >
                 <Ionicons
@@ -129,24 +125,21 @@ export default function BookingPageScreen() {
                   color={selectedPeriod === period.id ? '#FFF' : '#64748B'}
                 />
                 <Text
-                  style={[
-                    styles.periodText,
-                    selectedPeriod === period.id && styles.periodTextActive,
-                  ]}
+                  className={`text-sm font-medium flex-1 ${
+                    selectedPeriod === period.id ? 'text-white' : 'text-black'
+                  }`}
                 >
                   {period.label}
                 </Text>
                 <View
-                  style={[
-                    styles.slotBadge,
-                    selectedPeriod === period.id && styles.slotBadgeActive,
-                  ]}
+                  className={`px-2 py-0.5 rounded-[10px] ${
+                    selectedPeriod === period.id ? 'bg-gray-700' : 'bg-slate-300'
+                  }`}
                 >
                   <Text
-                    style={[
-                      styles.slotBadgeText,
-                      selectedPeriod === period.id && styles.slotBadgeTextActive,
-                    ]}
+                    className={`text-xs font-semibold ${
+                      selectedPeriod === period.id ? 'text-white' : 'text-black'
+                    }`}
                   >
                     {period.slots}
                   </Text>
@@ -156,26 +149,27 @@ export default function BookingPageScreen() {
           </View>
 
           {selectedPeriod === 'noon' && (
-            <Text style={styles.timeRange}>12:00 PM - 04:00 PM</Text>
+            <Text className="text-sm text-slate-600 mt-3 text-center">12:00 PM - 04:00 PM</Text>
           )}
         </View>
 
         {/* Timeline Slots */}
-        <View style={styles.section}>
+        <View className="px-5 mt-6">
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.timeline}>
+            <View className="flex-row py-5">
               {timeSlots.map((time, index) => (
                 <TouchableOpacity
                   key={index}
-                  style={styles.timeSlotContainer}
+                  className="items-center mr-10"
                   onPress={() => setSelectedSlot(time)}
                 >
-                  <Text style={styles.timeLabel}>{time}</Text>
+                  <Text className="text-xs text-slate-600 mb-2">{time}</Text>
                   <View
-                    style={[
-                      styles.timeMarker,
-                      selectedSlot === time && styles.timeMarkerActive,
-                    ]}
+                    className={`w-8 h-8 rounded-full border-2 justify-center items-center ${
+                      selectedSlot === time
+                        ? 'bg-green-500 border-green-500'
+                        : 'bg-white border-slate-300'
+                    }`}
                   >
                     {selectedSlot === time && (
                       <Ionicons name="checkmark" size={16} color="#FFF" />
@@ -183,10 +177,10 @@ export default function BookingPageScreen() {
                   </View>
                   {index < timeSlots.length - 1 && (
                     <View
-                      style={[
-                        styles.timeConnector,
-                        selectedSlot === time && styles.timeConnectorActive,
-                      ]}
+                      className={`absolute left-8 w-[60px] h-0.5 ${
+                        selectedSlot === time ? 'bg-green-500' : 'bg-slate-300'
+                      }`}
+                      style={{ top: 44 }}
                     />
                   )}
                 </TouchableOpacity>
@@ -196,58 +190,56 @@ export default function BookingPageScreen() {
         </View>
 
         {/* Court Selection */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Select Cricket Court</Text>
-          <View style={styles.courtRow}>
+        <View className="px-5 mt-6">
+          <Text className="text-base font-semibold text-black">Select Cricket Court</Text>
+          <View className="flex-row gap-3 mt-3">
             <TouchableOpacity
-              style={[
-                styles.courtButton,
-                selectedCourt === 'Court A' && styles.courtButtonActive,
-              ]}
+              className={`flex-1 flex-row items-center gap-3 py-4 px-4 rounded-xl border-2 ${
+                selectedCourt === 'Court A'
+                  ? 'border-green-500 bg-green-50'
+                  : 'border-slate-300 bg-white'
+              }`}
               onPress={() => setSelectedCourt('Court A')}
             >
               <View
-                style={[
-                  styles.courtRadio,
-                  selectedCourt === 'Court A' && styles.courtRadioActive,
-                ]}
+                className={`w-5 h-5 rounded-full border-2 justify-center items-center ${
+                  selectedCourt === 'Court A' ? 'border-green-500' : 'border-slate-300'
+                }`}
               >
                 {selectedCourt === 'Court A' && (
-                  <View style={styles.courtRadioInner} />
+                  <View className="w-2.5 h-2.5 rounded-full bg-green-500" />
                 )}
               </View>
               <Text
-                style={[
-                  styles.courtText,
-                  selectedCourt === 'Court A' && styles.courtTextActive,
-                ]}
+                className={`text-sm font-medium ${
+                  selectedCourt === 'Court A' ? 'text-green-500 font-semibold' : 'text-slate-600'
+                }`}
               >
                 Court A
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[
-                styles.courtButton,
-                selectedCourt === 'Court B' && styles.courtButtonActive,
-              ]}
+              className={`flex-1 flex-row items-center gap-3 py-4 px-4 rounded-xl border-2 ${
+                selectedCourt === 'Court B'
+                  ? 'border-green-500 bg-green-50'
+                  : 'border-slate-300 bg-white'
+              }`}
               onPress={() => setSelectedCourt('Court B')}
             >
               <View
-                style={[
-                  styles.courtRadio,
-                  selectedCourt === 'Court B' && styles.courtRadioActive,
-                ]}
+                className={`w-5 h-5 rounded-full border-2 justify-center items-center ${
+                  selectedCourt === 'Court B' ? 'border-green-500' : 'border-slate-300'
+                }`}
               >
                 {selectedCourt === 'Court B' && (
-                  <View style={styles.courtRadioInner} />
+                  <View className="w-2.5 h-2.5 rounded-full bg-green-500" />
                 )}
               </View>
               <Text
-                style={[
-                  styles.courtText,
-                  selectedCourt === 'Court B' && styles.courtTextActive,
-                ]}
+                className={`text-sm font-medium ${
+                  selectedCourt === 'Court B' ? 'text-green-500 font-semibold' : 'text-slate-600'
+                }`}
               >
                 Court B
               </Text>
@@ -256,18 +248,20 @@ export default function BookingPageScreen() {
         </View>
 
         {/* Player Count */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Select Players Count</Text>
-          <View style={styles.playerCounter}>
+        <View className="px-5 mt-6">
+          <Text className="text-base font-semibold text-black">Select Players Count</Text>
+          <View className="flex-row items-center justify-center gap-6 py-4 bg-slate-50 rounded-xl mt-3">
             <TouchableOpacity
-              style={styles.counterButton}
+              className="w-10 h-10 rounded-lg bg-slate-300 justify-center items-center"
               onPress={() => setPlayerCount(Math.max(1, playerCount - 1))}
             >
               <Ionicons name="remove" size={20} color="#000" />
             </TouchableOpacity>
-            <Text style={styles.playerCountText}>{playerCount} Players</Text>
+            <Text className="text-base font-semibold text-black min-w-[100px] text-center">
+              {playerCount} Players
+            </Text>
             <TouchableOpacity
-              style={styles.counterButton}
+              className="w-10 h-10 rounded-lg bg-slate-300 justify-center items-center"
               onPress={() => setPlayerCount(playerCount + 1)}
             >
               <Ionicons name="add" size={20} color="#000" />
@@ -276,303 +270,32 @@ export default function BookingPageScreen() {
         </View>
 
         {/* Pricing */}
-        <View style={styles.section}>
-          <View style={styles.priceRow}>
-            <Text style={styles.priceLabel}>₹ {currentBooking.pricePerHour}</Text>
-            <Text style={styles.priceDetail}>| ₹{Math.round(currentBooking.pricePerHour / playerCount)} per player</Text>
+        <View className="px-5 mt-6">
+          <View className="flex-row items-center gap-2">
+            <Text className="text-lg font-semibold text-black">₹ {currentBooking.pricePerHour}</Text>
+            <Text className="text-sm text-slate-600">| ₹{Math.round(currentBooking.pricePerHour / playerCount)} per player</Text>
           </View>
           <TouchableOpacity>
-            <Text style={styles.priceBreakdown}>View Price Breakdown</Text>
+            <Text className="text-[13px] text-green-500 mt-2 font-medium">View Price Breakdown</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: 100 }} />
+        <View className="h-[100px]" />
       </ScrollView>
 
       {/* Bottom Bar */}
-      <View style={styles.bottomBar}>
+      <View className="px-5 py-4 bg-white border-t border-slate-300">
         <TouchableOpacity
-          style={[styles.nextButton, !isFormValid && styles.nextButtonDisabled]}
+          className={`flex-row items-center justify-center py-4 rounded-lg gap-2 ${
+            isFormValid ? 'bg-green-500' : 'bg-slate-400'
+          }`}
           onPress={handleNext}
           disabled={!isFormValid}
         >
-          <Text style={styles.nextButtonText}>Next</Text>
+          <Text className="text-base font-semibold text-white">Next</Text>
           <Ionicons name="chevron-forward" size={20} color="#FFF" />
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  scrollView: {
-    flex: 1,
-  },
-  section: {
-    paddingHorizontal: 20,
-    marginTop: 24,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#000',
-  },
-  slotsAvailable: {
-    fontSize: 12,
-    color: '#64748B',
-  },
-  monthText: {
-    fontSize: 14,
-    color: '#22C55E',
-    marginBottom: 12,
-    fontWeight: '500',
-  },
-  datesScroll: {
-    marginHorizontal: -20,
-    paddingHorizontal: 20,
-  },
-  dateChip: {
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    marginRight: 12,
-    borderRadius: 12,
-    backgroundColor: '#F8FAFC',
-    minWidth: 60,
-  },
-  dateChipActive: {
-    backgroundColor: '#22C55E',
-  },
-  dayText: {
-    fontSize: 11,
-    color: '#64748B',
-    marginBottom: 4,
-    fontWeight: '500',
-  },
-  dayTextActive: {
-    color: '#FFF',
-  },
-  dateText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#000',
-  },
-  dateTextActive: {
-    color: '#FFF',
-  },
-  periodsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-  },
-  periodChip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    backgroundColor: '#F8FAFC',
-    minWidth: width / 2 - 26,
-  },
-  periodChipActive: {
-    backgroundColor: '#000',
-  },
-  periodText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#000',
-    flex: 1,
-  },
-  periodTextActive: {
-    color: '#FFF',
-  },
-  slotBadge: {
-    backgroundColor: '#E2E8F0',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 10,
-  },
-  slotBadgeActive: {
-    backgroundColor: '#374151',
-  },
-  slotBadgeText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#000',
-  },
-  slotBadgeTextActive: {
-    color: '#FFF',
-  },
-  timeRange: {
-    fontSize: 14,
-    color: '#64748B',
-    marginTop: 12,
-    textAlign: 'center',
-  },
-  timeline: {
-    flexDirection: 'row',
-    paddingVertical: 20,
-  },
-  timeSlotContainer: {
-    alignItems: 'center',
-    marginRight: 40,
-  },
-  timeLabel: {
-    fontSize: 12,
-    color: '#64748B',
-    marginBottom: 8,
-  },
-  timeMarker: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    borderWidth: 2,
-    borderColor: '#E2E8F0',
-    backgroundColor: '#FFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  timeMarkerActive: {
-    backgroundColor: '#22C55E',
-    borderColor: '#22C55E',
-  },
-  timeConnector: {
-    position: 'absolute',
-    top: 44,
-    left: 32,
-    width: 60,
-    height: 2,
-    backgroundColor: '#E2E8F0',
-  },
-  timeConnectorActive: {
-    backgroundColor: '#22C55E',
-  },
-  courtRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 12,
-  },
-  courtButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: '#E2E8F0',
-    backgroundColor: '#FFF',
-  },
-  courtButtonActive: {
-    borderColor: '#22C55E',
-    backgroundColor: '#F0FDF4',
-  },
-  courtRadio: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#E2E8F0',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  courtRadioActive: {
-    borderColor: '#22C55E',
-  },
-  courtRadioInner: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#22C55E',
-  },
-  courtText: {
-    fontSize: 14,
-    color: '#64748B',
-    fontWeight: '500',
-  },
-  courtTextActive: {
-    color: '#22C55E',
-    fontWeight: '600',
-  },
-  playerCounter: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 24,
-    paddingVertical: 16,
-    backgroundColor: '#F8FAFC',
-    borderRadius: 12,
-    marginTop: 12,
-  },
-  counterButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 8,
-    backgroundColor: '#E2E8F0',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  playerCountText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#000',
-    minWidth: 100,
-    textAlign: 'center',
-  },
-  priceRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  priceLabel: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#000',
-  },
-  priceDetail: {
-    fontSize: 14,
-    color: '#64748B',
-  },
-  priceBreakdown: {
-    fontSize: 13,
-    color: '#22C55E',
-    marginTop: 8,
-    fontWeight: '500',
-  },
-  bottomBar: {
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: '#FFF',
-    borderTopWidth: 1,
-    borderTopColor: '#E2E8F0',
-  },
-  nextButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#22C55E',
-    paddingVertical: 16,
-    borderRadius: 8,
-    gap: 8,
-  },
-  nextButtonDisabled: {
-    backgroundColor: '#CBD5E1',
-  },
-  nextButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#FFF',
-  },
-});
