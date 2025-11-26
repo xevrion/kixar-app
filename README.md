@@ -36,7 +36,6 @@ A React Native mobile application for browsing and booking turf facilities, buil
 │   └── turfData.json             # Static turf data
 ├── assets/
 │   └── images/                   # App images and icons
-├── info_proj/                    # Assignment docs and Figma screenshots
 ├── globals.css                   # Tailwind directives
 ├── tailwind.config.js            # Tailwind configuration
 ├── metro.config.js               # Metro bundler config
@@ -54,17 +53,20 @@ A React Native mobile application for browsing and booking turf facilities, buil
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <your-repo-url>
 cd KIXAR_Assignment
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npx expo start
 ```
@@ -90,24 +92,6 @@ npx expo build:ios
 3. **Confirm Booking**: Tap "Next" (enabled only when all required fields are selected)
 4. **View Bookings**: Navigate to "My Bookings" tab to see all confirmed bookings
 5. **Delete Booking**: Tap the trash icon on any booking to remove it
-
-## Key Features Implemented
-
-### Level 1 - Minimum Qualification ✅
-- Fully working navigation with Expo Router
-- Correct parameter passing between screens
-- Working booking state with Context API
-- Button validation (Next button disabled until form is valid)
-- My Bookings screen reflects stored bookings
-
-### Level 2 - Recommended ✅
-- AsyncStorage for persistent bookings
-- Reusable UI components and patterns
-- Derived UI values (price per player calculation)
-
-### Level 3 - Bonus ✅
-- **TypeScript** - Full type safety across the app
-- Clean, maintainable code with NativeWind
 
 ## Assumptions
 
@@ -142,6 +126,7 @@ npx expo build:ios
 ## Pending Improvements
 
 ### High Priority
+
 - Integrate actual map with react-native-maps
 - Add date picker component for flexible date selection
 - Implement edit booking functionality
@@ -149,6 +134,7 @@ npx expo build:ios
 - Dynamic time slot availability based on selected period
 
 ### Medium Priority
+
 - Add animations and transitions (Reanimated)
 - Implement search/filter on My Bookings
 - Add booking confirmation screen with summary
@@ -156,16 +142,13 @@ npx expo build:ios
 - Error boundaries and better error handling
 
 ### Low Priority
+
 - Dark mode support
 - Share booking feature
 - Calendar view for bookings
 - Push notifications for upcoming bookings
 - Multi-language support
 - Payment integration (mock)
-
-## Screenshots
-
-See the `info_proj` folder for Figma design references and implementation screenshots.
 
 ## Code Quality Highlights
 
@@ -180,6 +163,7 @@ See the `info_proj` folder for Figma design references and implementation screen
 ## Dependencies
 
 ### Main Dependencies
+
 ```json
 {
   "expo": "~54.0.25",
@@ -195,6 +179,7 @@ See the `info_proj` folder for Figma design references and implementation screen
 ```
 
 ### Dev Dependencies
+
 ```json
 {
   "typescript": "~5.7.2",
