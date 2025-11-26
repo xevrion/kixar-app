@@ -53,7 +53,7 @@ export default function TurfDetailsScreen() {
             {[...Array(5)].map((_, index) => (
               <View
                 key={index}
-                className={`h-2 rounded ${index === 0 ? 'w-6 bg-green-500' : 'w-2 bg-white/50'}`}
+                className={`h-2 rounded ${index === 0 ? 'w-6 bg-[#2DB0A3]' : 'w-2 bg-white/50'}`}
               />
             ))}
           </View>
@@ -63,11 +63,11 @@ export default function TurfDetailsScreen() {
         <View className="p-5 bg-white">
           <View className="flex-row items-center gap-2 mb-2">
             <Text className="text-xl font-semibold text-black">{turfData.name}</Text>
-            <Ionicons name="checkmark-circle" size={20} color="#22C55E" />
+            <Ionicons name="checkmark-circle" size={20} color="#2DB0A3" />
           </View>
 
           <View className="flex-row items-center gap-2 mb-3">
-            <View className="flex-row items-center gap-1 bg-green-500 px-2 py-1 rounded">
+            <View className="flex-row items-center gap-1 bg-[#2DB0A3] px-2 py-1 rounded">
               <Text className="text-sm font-semibold text-white">{turfData.rating}</Text>
               <Ionicons name="star" size={14} color="#FFF" />
             </View>
@@ -115,7 +115,7 @@ export default function TurfDetailsScreen() {
           <Text className="text-base font-semibold text-black mb-3">About '{turfData.name}</Text>
           <Text className="text-sm text-slate-600 leading-5">
             {turfData.about.substring(0, 120)}...{' '}
-            <Text className="text-green-500 font-medium">read more</Text>
+            <Text className="text-[#2DB0A3] font-medium">read more</Text>
           </Text>
         </View>
 
@@ -184,12 +184,12 @@ export default function TurfDetailsScreen() {
         {/* Offers */}
         <View className="px-5 mb-6">
           <Text className="text-base font-semibold text-black mb-3">Offers</Text>
-          <View className="flex-row p-4 bg-green-50 rounded-xl border border-green-200 gap-3">
+          <View className="flex-row p-4 bg-[#F4FBFA] rounded-xl border border-[#CAEBE8] gap-3">
             <View className="flex-row items-center gap-1.5">
-              <Ionicons name="pricetag" size={20} color="#22C55E" />
-              <Text className="text-xs font-semibold text-green-500">FIRSTBOOK</Text>
+              <Ionicons name="pricetag" size={20} color="#2DB0A3" />
+              <Text className="text-xs font-semibold text-black">FIRSTBOOK</Text>
             </View>
-            <Text className="flex-1 text-[13px] text-green-900 leading-[18px]">
+            <Text className="flex-1 text-[13px] text-black leading-[18px]">
               Get a 20% Offer on your first turf booking with Kixar App
             </Text>
           </View>
@@ -199,9 +199,9 @@ export default function TurfDetailsScreen() {
         <View className="px-5 mb-6">
           <Text className="text-base font-semibold text-black mb-3">Ratings & Reviews</Text>
           <View className="flex-row items-center gap-3 mb-4">
-            <View className="flex-row items-center gap-1.5 bg-green-500 px-3 py-2 rounded-lg">
+            <View className="flex-row items-center gap-1.5 bg-[#2DB0A3] px-3 py-2 rounded-full">
               <Text className="text-base font-semibold text-white">{turfData.rating}</Text>
-              <Ionicons name="star" size={18} color="#FFF" />
+              <Ionicons name="star" size={18} color="#FFCC00" />
             </View>
             <Text className="text-sm text-slate-600">
               {turfData.reviewCount} Ratings · {turfData.reviews.length} Reviews
@@ -230,7 +230,7 @@ export default function TurfDetailsScreen() {
           ))}
 
           <TouchableOpacity>
-            <Text className="text-sm font-medium text-green-500 text-center mt-2">See All Reviews</Text>
+            <Text className="text-sm font-medium text-[#2DB0A3] text-center mt-2">See All Reviews</Text>
           </TouchableOpacity>
         </View>
 
@@ -251,8 +251,8 @@ export default function TurfDetailsScreen() {
 
       {/* Sticky Bottom Bar */}
       <View className="bg-white border-t border-slate-200 shadow-2xl">
-        <View className="bg-green-100 py-2 items-center">
-          <Text className="text-xs font-semibold text-green-900">15% OFF ends in 01:50 s</Text>
+        <View className="bg-[#D5EFED] py-2 items-center">
+          <Text className="text-xs font-semibold text-[#2DB0A3]">15% OFF ends in 01:50 s</Text>
         </View>
         <View className="flex-row justify-between items-center px-5 py-3">
           <View>
@@ -262,7 +262,7 @@ export default function TurfDetailsScreen() {
             <Text className="text-[11px] text-slate-600">per player cost in next step</Text>
           </View>
           <TouchableOpacity
-            className="flex-row items-center bg-green-500 px-6 py-3 rounded-lg gap-1.5"
+            className="flex-row items-center bg-[#2DB0A3] px-6 py-3 rounded-lg gap-1.5"
             onPress={handleBookNow}
           >
             <Text className="text-[15px] font-semibold text-white">Book Now</Text>
