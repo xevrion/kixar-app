@@ -1,0 +1,108 @@
+{
+  "id": "turf-001",
+  "name": "Elite Sports Arena",
+  "rating": 4.5,
+  "reviewCount": 328,
+  "address": "123 Sports Complex, MG Road, Bangalore - 560001",
+  "phone": "+91 98765 43210",
+  "pricePerHour": 1200,
+  "bannerImage": "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=800",
+  "location": {
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  },
+  "about": "Elite Sports Arena is a premium sports facility offering world-class turf grounds. Perfect for football, cricket, and other outdoor sports. Our well-maintained grounds ensure the best playing experience.",
+  "timing": {
+    "weekdays": "6:00 AM - 11:00 PM",
+    "weekends": "6:00 AM - 12:00 AM"
+  },
+  "amenities": [
+    "Changing Rooms",
+    "Parking",
+    "Drinking Water",
+    "First Aid",
+    "Washrooms",
+    "Cafeteria",
+    "Lighting",
+    "Seating Area"
+  ],
+  "sports": [
+    "Football",
+    "Cricket",
+    "Badminton",
+    "Basketball"
+  ],
+  "offers": [
+    {
+      "id": "offer-1",
+      "title": "Weekend Special",
+      "description": "Get 20% off on weekend bookings",
+      "discount": "20%"
+    },
+    {
+      "id": "offer-2",
+      "title": "Morning Discount",
+      "description": "Book before 10 AM and save 15%",
+      "discount": "15%"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "review-1",
+      "userName": "Rajesh Kumar",
+      "rating": 5,
+      "date": "2024-11-20",
+      "comment": "Excellent turf quality! Very well maintained and the staff is friendly."
+    },
+    {
+      "id": "review-2",
+      "userName": "Priya Sharma",
+      "rating": 4,
+      "date": "2024-11-18",
+      "comment": "Good facilities and easy booking process. Parking can be better."
+    },
+    {
+      "id": "review-3",
+      "userName": "Arjun Reddy",
+      "rating": 5,
+      "date": "2024-11-15",
+      "comment": "Best turf in the area! Great lighting for evening matches."
+    }
+  ],
+  "courts": [
+    {
+      "id": "court-a",
+      "name": "Court A",
+      "type": "Football",
+      "capacity": 14
+    },
+    {
+      "id": "court-b",
+      "name": "Court B",
+      "type": "Cricket",
+      "capacity": 22
+    }
+  ],
+  "timeSlots": {
+    "morning": {
+      "label": "Morning",
+      "timeRange": "6:00 AM - 10:00 AM",
+      "slots": ["06:00", "07:00", "08:00", "09:00"]
+    },
+    "noon": {
+      "label": "Noon",
+      "timeRange": "10:00 AM - 4:00 PM",
+      "slots": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]
+    },
+    "evening": {
+      "label": "Evening",
+      "timeRange": "4:00 PM - 8:00 PM",
+      "slots": ["16:00", "17:00", "18:00", "19:00"]
+    },
+    "twilight": {
+      "label": "Twilight",
+      "timeRange": "8:00 PM - 11:00 PM",
+      "slots": ["20:00", "21:00", "22:00"]
+    }
+  }
+}
