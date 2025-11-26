@@ -12,6 +12,7 @@ import {
   View,
 } from 'react-native';
 
+
 const { width } = Dimensions.get('window');
 
 export default function TurfDetailsScreen() {
@@ -38,14 +39,14 @@ export default function TurfDetailsScreen() {
             className="w-full h-full"
             resizeMode="cover"
           />
-          <TouchableOpacity className="absolute top-[50px] left-4 w-10 h-10 rounded-full bg-black/30 justify-center items-center">
+          <TouchableOpacity className="absolute top-[50px] left-4 w-10 h-10 rounded-full  justify-center items-center">
             <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
           </TouchableOpacity>
           <View className="absolute top-[50px] right-4 flex-row gap-3">
-            <TouchableOpacity className="w-10 h-10 rounded-full bg-black/30 justify-center items-center">
+            <TouchableOpacity className="w-10 h-10 rounded-full  justify-center items-center">
               <Ionicons name="heart-outline" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            <TouchableOpacity className="w-10 h-10 rounded-full bg-black/30 justify-center items-center">
+            <TouchableOpacity className="w-10 h-10 rounded-full  justify-center items-center">
               <Ionicons name="share-social-outline" size={24} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
