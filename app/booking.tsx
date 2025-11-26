@@ -67,7 +67,6 @@ export default function BookingPageScreen() {
         turfId: currentBooking.turfId || "",
         turfName: currentBooking.turfName,
         date: dayjs(selectedDate).toISOString(),
-
         timeSlot: selectedSlot,
         timePeriod: selectedPeriod || "",
         court: selectedCourt,
